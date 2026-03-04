@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Open My Heart ❤️</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            background: linear-gradient(to right, #ff9a9e, #fad0c4);
+            font-family: 'Georgia', serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            overflow: hidden;
+        }
+
+        .button-container {
+            background: rgba(0,0,0,0.5);
+            padding: 40px 30px;
+            border-radius: 20px;
+            box-shadow: 0 0 20px rgba(255,255,255,0.6);
+        }
+
+        button {
+            padding: 15px 30px;
+            font-size: 20px;
+            border: none;
+            border-radius: 15px;
+            background-color: #ff4d6d;
+            color: white;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+
+        button:hover {
+            transform: scale(1.1);
+        }
+
+        .message-container {
+            display: none;
+            background: rgba(0,0,0,0.5);
+            padding: 40px 30px;
+            border-radius: 20px;
+            box-shadow: 0 0 25px rgba(255,255,255,0.6);
+            color: white;
+            max-width: 600px;
+            margin: auto;
+            position: relative;
+        }
+
+        h1 {
+            font-size: 40px;
+            margin-bottom: 30px;
+        }
+
+        p {
+            font-size: 20px;
+            line-height: 1.8;
+            opacity: 0;
+        }
+
+        .heart {
+            font-size: 40px;
+            animation: beat 1s infinite;
+            margin-top: 20px;
+        }
+
+        @keyframes beat {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.3); }
+            100% { transform: scale(1); }
+        }
+
+        .falling-heart {
+            position: absolute;
+            color: #ff4d6d;
+            font-size: 20px;
+            animation: fall 5s linear infinite;
+        }
+
+        @keyframes fall {
+            0% { top: -50px; opacity: 1; }
+            100% { top: 100vh; opacity: 0; }
+        }
+
+        /* Sparkle effect */
+        .sparkle {
+            position: absolute;
+            width: 5px;
+            height: 5px;
+            background: #fff;
+            border-radius: 50%;
+            box-shadow: 0 0 10px #fff;
+            animation: sparkleAnim 2s linear infinite;
+        }
+
+        @keyframes sparkleAnim {
+            0% { transform: translateY(0) scale(1); opacity: 1; }
+            100% { transform: translateY(-100px) scale(0); opacity: 0; }
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="button-container" id="buttonBox">
+        <button onclick="showMessage()">💖 Open My Heart 💖</button>
+    </div>
+
+    <div class="message-container" id="messageBox">
+        <h1>Happy Birthday, <span id="name">My Love</span> ❤️</h1>
+        <p id="line1">On this special day, I want you to know how deeply I love you.</p>
+        <p id="line2">You are my peace, my comfort, my forever.</p>
+        <p id="line3">Every moment with you feels like a beautiful dream I never want to wake from.</p>
+        <p id="line4">I pray your life is filled with success, laughter, and endless love — just as you fill my heart every day.</p>
+        <p id="line5">Thank you for being you. Thank you for loving me.</p>
+        <p id="line6">I love you more than words can ever explain.</p>
+        <div class="heart">❤️</div>
+    </div>
+
+    <!-- Optional Background Music -->
+    <!--
+    <audio autoplay loop>
+        <source src="your-music.mp3" type="audio/mpeg">
+    </audio>
+    -->
+
+    <script>
+        function showMessage() {
+            document.getElementById('buttonBox').style.display = 'none';
+            const messageBox = document.getElementById('messageBox');
+            messageBox.style.display = 'block';
+
+            // Reveal lines one by one
+            const lines = [
+                document.getElementById('line1'),
+                document.getElementById('line2'),
+                document.getElementById('line3'),
+                document.getElementById('line4'),
+                document.getElementById('line5'),
+                document.getElementById('line6')
+            ];
+
+            let delay = 0;
+            lines.forEach(line => {
+                setTimeout(() => { line.style.opacity = 1; }, delay);
+                delay += 1500;
+            });
+        }
+
+        // Falling hearts effect
+        function createHeart() {
+            const heart = document.createElement('div');
+            heart.classList.add('falling-heart');
+            heart.style.left = Math.random() * window.innerWidth + 'px';
+            heart.style.animationDuration = (3 + Math.random() * 5) + 's';
+            heart.textContent = '❤️';
+            document.body.appendChild(heart);
+            setTimeout(() => heart.remove(), 5000);
+        }
+        setInterval(createHeart, 300);
+
+        // Sparkle effect
+        function createSparkle() {
+            const sparkle = document.createElement('div');
+            sparkle.classList.add('sparkle');
+            sparkle.style.left = Math.random() * window.innerWidth + 'px';
+            sparkle.style.top = Math.random() * window.innerHeight + 'px';
+            document.body.appendChild(sparkle);
+            setTimeout(() => sparkle.remove(), 2000);
+        }
+        setInterval(createSparkle, 500);
+    </script>
+
+</body>
+</html>
